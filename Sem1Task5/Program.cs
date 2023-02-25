@@ -11,6 +11,6 @@ if (num!=null)
         outLine = outLine + namJob + ",   ";
         namJob++; // namJob = namJob + 1
     }
-    outLine = outLine + namStart;
+    outLine = outLine + namStart; // Это добавление последнего числа, чтобы было без запятой
     Console.WriteLine(outLine);
 }
