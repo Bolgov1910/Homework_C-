@@ -22,5 +22,5 @@ Console.WriteLine("Некратно  " + oper);
 Console.WriteLine ("Введите число для тернарного опенратора");
 int namB = int.Parse(Console.ReadLine()??"0");
 // проверка сразу 2-х условий
-string rez = ((nam%7==0) && (nam%23==0))? "Кратно(терн.оп)" : "Некратно(терн.оп)";
+string? rez = ((nam%7==0) && (nam%23==0))? "Кратно(терн.оп)" : "Некратно(терн.оп)";
 Console.WriteLine(rez);
