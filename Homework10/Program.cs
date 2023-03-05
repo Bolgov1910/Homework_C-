@@ -1,4 +1,5 @@
-﻿Console.WriteLine ("Введите число");
+﻿//На входе трёхзначное число, на выходе вторая цифра этого числа
+Console.WriteLine ("Введите число");
 
 // вводим переменную. Условие - "3-х значное число"
 int num = int.Parse(Console.ReadLine()??"0");
@@ -25,5 +26,4 @@ else
     int res2 = ((int)digit[1]-48);
     Console.WriteLine ("Вторая цифра числа Способ 2: "+res2);
 }
-
 
