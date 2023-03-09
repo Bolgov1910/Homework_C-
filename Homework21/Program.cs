@@ -1,0 +1,32 @@
+﻿// На входе координаты 2-х точек 
+// Найти расстояние между ними в 3D пространстве.
+
+// Метод -  ввод данных - создание
+int ReadData (string msg)
+{
+    Console.WriteLine(msg);
+    return int.Parse (Console.ReadLine()?? "0");
+}
+// Метод -  расчета – создание - для дробных чисел
+double CalcDist2D (int x1, int x2, int y1, int y2, int z1, int z2)
+{
+    return Math.Sqrt((x2-x1)* (x2-x1) + (y2-y1)* (y2-y1) + (z2-z1)* (z2-z1));
+}
+
+// Метод -  вывода данных - создание
+void PrintData (string msg, double data)
+{
+    Console.WriteLine (msg + data);
+}
+
+// Запуск ввода
+int x1 = ReadData ("Введите координату X точки А");
+int y1 = ReadData ("Введите координату Y точки А");
+int z1 = ReadData ("Введите координату Z точки А");
+int x2 = ReadData ("Введите координату X точки B");
+int y2 = ReadData ("Введите координату Y точки B");
+int z2 = ReadData ("Введите координату Z точки B");
+// Запуск расчета, считаем dist
+double dist = CalcDist2D (x1, x2, y1, y2, z1, z2);
+// Запуск вывода
+PrintData ("Расстояние  между точками  ", dist);
