@@ -7,7 +7,6 @@ int ReadData (string msg)
     Console.WriteLine(msg);
     return int.Parse (Console.ReadLine()?? "0");
 }
-
 // Метод формирования результата – создание. Строка для накопления результатов
 string LineBuilder (int num, int pow)
 {
@@ -18,7 +17,6 @@ string LineBuilder (int num, int pow)
    }
    return rez;
 }
-
 // Метод -  вывода данных - создание
 void PrintData (string data, string data1)
 {
