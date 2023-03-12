@@ -9,7 +9,7 @@ int ReadData (string line)
     Console.WriteLine(line);
     return int.Parse (Console.ReadLine()?? "0");
 }
-// медод вывода результата
+// метод вывода результата
 void PrintRez (string line)
 {
     Console.WriteLine (line);
