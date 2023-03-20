@@ -12,4 +12,4 @@ int firstNum = num/100;
 //Console.WriteLine(num);
 
 // Или совсем просто
-Console.WriteLine(num/100*10+num%10);
+

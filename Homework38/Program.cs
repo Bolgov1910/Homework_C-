@@ -1,8 +1,6 @@
 ﻿// №38 Задайте массив вещественных чисел. Найдите разницу между 
 // максимальным и минимальным элементов массива.
 
-
-
 // метод заполнения массива
 //double[] Gen1DArr(double n1, double n2,double n3,double n4,double n5) // 5 элементов в массиве
 //{
@@ -73,24 +71,60 @@ Print1DArr(testAr);    // Чтобы посмотреть заполнение:
 
 
 // Метод расчетв и вывода результата
-void selectionSort(double[] array)
-{
-    for (int i = 0; i < array.Length - 1; i++)
+//double SelectMin(double[] array)
+//{
+    //double minPosition = 0;
+    double minPosition = 0;
+    double maxPosition = 0;
+//minPosition = testAr[i];
+//maxPosition = testAr[i];
+
+for (int i = 0; i < testAr.Length-1; i++)  // 
     {
-        double minPosition = i;
-        for (int j = i+1; j < array.Length; j++)
-        {
-            if (array[j] < array[minPosition]); minPosition = j;
-            {
-            minPosition = j;
-            }
-        }    
-        double temporary = array[i];
-        array[i] = array [minPosition];
-        array[minPosition] = temporary;
+        
+        // for (int j = i+1; j < array.Length; j++)
+        //{
+            if (testAr[i] < minPosition); minPosition = testAr[i];
+            if (testAr[i] > maxPosition); maxPosition = testAr[i];        //{
+            //double min = minPosition;
+            //double max = maxPosition;
+            
+            //minPosition = j;
+            //}
+        //}    
+        //double temporary = array[i];
+        //array[i] = array [minPosition];
+        //array[minPosition] = temporary;
+        // return minPosition;
+    testAr[0] = minPosition;
+    testAr[testAr.Length-1] = maxPosition;
     }
-    double res = array [array.Length] - array [0];
-    Console.WriteLine("Разница между максимальным и минимальным = " + res); 
-}
+double res = testAr[testAr.Length-1]-testAr[0];
+Console.WriteLine("Разница между максимальным и минимальным = "+  res);
+//    return minPosition;
+//}    
+    
+// double SelectMax(double[] array)    
+//{    //double maxPosition =0;
+    //for (int i = 0; i < testAr.Length-1; i++)  // 
+//    {
+//        double maxPosition = testAr[i];
+        // for (int j = i+1; j < array.Length; j++)
+        //{
+//            if (testAr[i] > maxPosition); maxPosition = testAr[i];
+            //{
+            //minPosition = j;
+            //}
+        //}    
+        //double temporary = array[i];
+        //array[i] = array [minPosition];
+        //array[minPosition] = temporary;
+    //return maxPosition;
+//    }
+//    return maxPosition;
+//}
 // Расчет и вывод 
-selectionSort (testAr);
+//selectionSort (testAr);
+
+// double res = maxPosition - miminPositionn;
+//  Console.WriteLine("Разница между максимальным и минимальным = ",  res);
