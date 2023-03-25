@@ -1,47 +1,61 @@
-﻿// хххЗадача №48 Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. Выведите 
-// ххх полученный массив на экран.
-
-
-// Дан двумерный массив размерностью 4 х 6, заполненный целыми числами с клавиатуры. 
-//Сформировать одномерный массив, каждый элемент которого равен количеству 
-//элементов соответствующей строки, больших данного числа
-
-
-using System;
-using System.Linq;
-                    
-public class Program
+﻿// Задача №48 Задайте двумерный массив размера m на n, каждый элемент 
+// в массиве находится по формуле: Aₘₙ = m+n. Выведите 
+// полученный массив на экран.
+// ОТ ЗАДАЧИ 46 ОТЛИЧАЕТСЯ СТРОКОЙ 27 (заполнение) и СТР 44 (печать с табуляцией)
+// Метод -  ввод данных - создание
+int ReadData (string msg)
 {
-    public static void Main()
-    {
-        int num = 0;
-        int[][] matr = new int[4][];
-        for (int i = 0; i < matr.Length; i++)
-            matr[i] = new int[6];
-        int[] arr = new int[matr.Length];
-        
-        Console.WriteLine("Заполните матрицу:");
-        for (int i = 0; i < matr.Length; i++)
-        {
-            for (int j = 0; j < matr[i].Length; j++)
-            {
-                Console.Write("Введите значение элемента {0}-й строки {1}-го столбца: ", i + 1, j + 1);
-                matr[i][j] = int.Parse(Console.ReadLine());
-            }
-        }
-        Console.Write("Введите число: ");
-        num = int.Parse(Console.ReadLine());
-        
-        for (int i = 0; i < arr.Length; i++)
-            arr[i] = matr[i].Where(it => it > num).Count();
-        
-        Console.Write("Полученный массив: ");
-        for (int i = 0; i < arr.Length; i++)
-        {
-            if (i != arr.Length - 1)
-                Console.Write("{0} ", arr[i]);
-            else
-                Console.WriteLine(arr[i]);
-        }
-    }
+    Console.WriteLine(msg);
+    return int.Parse (Console.ReadLine()?? "0");
 }
+
+// метод заполнения - универсальный
+int[,] Gen2DArr(int countRow, int countColumn, int min, int max) // кол-во строк, кол-во столбцов
+{
+    if (min>max) // это для того, чтобы поменять числа местами, если min оказалость больше max
+    {
+        int buf = min;
+        min = max;
+        max = buf;
+    }
+    Random rnd = new Random(); // создается один генератор случайных чисел c именем rnd
+    int[,] arr = new int[countRow,countColumn]; // двумерный массив - ко-во строк и столбцов
+    for (int i=0; i< countRow; i++)
+    {
+        for (int j=0; j< countColumn; j++)
+        {
+            arr[i,j] =  i+j; // тупо суммируем, хотя надо было (i+1) + (j+1), т.к. m и n - это размер, а не позиция
+        }
+        
+    }
+    return arr;
+}
+
+// метод: печать
+void Print2DArr(int[,] arr) 
+{   
+    // создается один генератор цветов (массив) c именем col ; есть 16 цветов - https://learn.microsoft.com/ru-ru/dotnet/api/system.consolecolor?view=net-7.0#system-consolecolor-red
+    ConsoleColor [] col = new ConsoleColor[] {ConsoleColor.Yellow, ConsoleColor.Blue, ConsoleColor.DarkRed};
+    for (int i = 0; i < arr.GetLength(0); i++)   // arr.GetLength- измеряет здесь-измерение"0"-строки ; элементы массива (-1) - без последнего элемента 
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)   // arr.GetLength- измеряет здесь-измерение"1"-столбцы
+        {
+            Console.ForegroundColor = col[new Random().Next(0,3)];   // вызов метода цвета шрифта. случайный выбор из заданных
+            Console.Write($"{arr[i,j]}\t ");  // элемент массива c табуляцией
+            Console.ResetColor(); // сброс цвета 
+        }    
+        Console.WriteLine(); // первод на новую строку
+    }
+}  
+
+// Работа:
+// Ввод количества строк и столбцов
+int row = ReadData ("Введите количество строк:");
+int colum = ReadData ("Введите количество столбцов:");
+
+// содаем массив
+int[,] arr2D = Gen2DArr (row, colum, 10, 99); // заполнение числами от 10 до 99
+
+Print2DArr(arr2D);
+
+

@@ -1,5 +1,14 @@
-﻿// Задача №46 Задайте двумерный массив размером m×n, заполненный 
-//случайными целыми числами.
+﻿// Задача 54: Задайте двумерный массив. Напишите программу, которая 
+// упорядочит по убыванию элементы каждой строки двумерного массива.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// В итоге получается вот такой массив:
+// 7 4 2 1
+// 9 5 3 2
+// 8 4 4 2
+
 
 // Метод -  ввод данных - создание
 int ReadData (string msg)
@@ -33,29 +42,46 @@ int[,] Gen2DArr(int countRow, int countColumn, int min, int max) // кол-во 
 // метод: печать
 void Print2DArr(int[,] arr) 
 {   
-    // создается один генератор цветов (массив) c именем col ; есть 16 цветов - https://learn.microsoft.com/ru-ru/dotnet/api/system.consolecolor?view=net-7.0#system-consolecolor-red
-    ConsoleColor [] col = new ConsoleColor[] {ConsoleColor.Yellow, ConsoleColor.Blue, ConsoleColor.DarkRed};
     for (int i = 0; i < arr.GetLength(0); i++)   // arr.GetLength- измеряет здесь-измерение"0"-строки ; элементы массива (-1) - без последнего элемента 
     {
         for (int j = 0; j < arr.GetLength(1); j++)   // arr.GetLength- измеряет здесь-измерение"1"-столбцы
         {
-            Console.ForegroundColor = col[new Random().Next(1,3)];   // вызов метода цвета шрифта. случайный выбор из заданных
             Console.Write(arr[i,j] + " ");  // элемент массива + пробел
-            Console.ResetColor(); // сброс цвета 
         }    
         Console.WriteLine(); // первод на новую строку
     }
 }  
 
-// Работа:
-// Ввод количества строк и столбцов
+// метод работы - упорядочит по убыванию элементы каждой строки 
+void OrderArrayLines(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++) // по строкам
+    {
+        for (int j = 0; j < array.GetLength(1); j++) // по столбцам
+	    {
+	        for (int k = 0; k < array.GetLength(1) - 1; k++) // элементы строки
+	        {
+	            if (array[i, k] < array[i, k + 1])  // если элемент < следующего
+	            {
+	                int temp = array[i, k + 1];     //  следующий ложится в temp
+	                array[i, k + 1] = array[i, k];   // текущий передвиеается в следующий
+	                array[i, k] = temp;              // в текуший из temp кладется следующий
+	            }
+	        }
+	    }
+	}
+}
+	
+// Работа
 int row = ReadData ("Введите количество строк:");
 int colum = ReadData ("Введите количество столбцов:");
 
 // содаем массив
 int[,] arr2D = Gen2DArr (row, colum, 10, 99); // заполнение числами от 10 до 99
-
+// печать исходного
 Print2DArr(arr2D);
-
-
-
+Console.WriteLine(); // пропуск строки
+// Обработка
+OrderArrayLines (arr2D);
+// Печать массива с отсортированными эсементами строк
+Print2DArr(arr2D);
